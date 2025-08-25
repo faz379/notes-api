@@ -53,6 +53,62 @@ Sebuah RESTful API menggunakan **Laravel 12** dan **JWT** untuk mengelola catata
    ```bash
    php artisan serve
    ```
-   php artisan serve
+   Contoh saat server lokal berjalan
    ```
-   
+   http://127.0.0.1:8000
+   ```
+## Testing dengan Postman
+
+### 1. Register
+POST ```/api/auth/register
+```json
+{
+  "name": "User",
+  "email": "user@example.com",
+  "password": "password",
+}
+```
+
+### 2. Login
+POST ```/api/auth/login```
+```json
+{
+  "email": "user@example.com",
+  "password": "password"
+}
+```
+simpan token dari response
+
+
+### 3. Tambah Note
+POST ```/api/notes```
+Header: ```Authorization: Bearer {token}```
+```json
+{
+  "title": "Catatan Pertama",
+  "content": "Ini adalah isi catatan pertama saya"
+}
+```
+
+### 4. Lihat Semua Note
+GET ```/api/notes```
+Header: ```Authorization: Bearer {token}```
+
+### 5. Lihat Note Per id
+GET ```/api/notes/{id}```
+Header: ```Authorization: Bearer {token}```
+
+### 6. Update Note
+PUT ```/api/notes/{id}```
+Header: ```Authorization: Bearer {token}```
+```json
+{
+  "title": "Catatan Update",
+  "content": "Ini adalah isi catatan yang telah diupdate"
+}
+```
+
+### 6. Hapus Note
+DELETE ```/api/notes/{id}```
+Header: ```Authorization: Bearer {token}```
+
